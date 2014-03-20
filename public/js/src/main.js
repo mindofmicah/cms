@@ -13,3 +13,9 @@ require.config({
         } 
     } 
 });
+
+require(['jquery', 'backbone', 'router', 'app'], function ($, Backbone, Router, AppView) {
+    'use strict';
+    new Router({app: new AppView({el: $('#content')})});
+    Backbone.history.start({pushState: true});
+});
