@@ -1,4 +1,4 @@
-define(['router', 'backbone'], function (Router, Backbone) {
+define(['router', 'backbone', 'app'], function (Router, Backbone, AppView) {
     'use strict';
     describe('Router', function () {
         Backbone.history.start({silent: true, pushState: true});
@@ -9,8 +9,8 @@ define(['router', 'backbone'], function (Router, Backbone) {
         it('should have an app associated with it', function () {
             expect(new Router().app).toBeDefined();
         });
-        it('should have an app that is a view', function () {
-            expect(new Router().app instanceof Backbone.View).toEqual(true);
+        it('should have an app that is an appview', function () {
+            expect(new Router().app instanceof AppView).toEqual(true);
         });
         it('should allow an APP to be passed in', function () {
             var app = {},
