@@ -12,6 +12,11 @@ define(['backbone', 'app'], function (Backbone, App) {
             it('should exist', function () {
                 expect(new App().showHome).toBeDefined();
             });
+            it('should set the main content to hello world', function () {
+                var app = new App();
+                app.showHome();
+                expect(app.el.innerHTML).toEqual('Hello World');
+            });
         });
     });
 });
