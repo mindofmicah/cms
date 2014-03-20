@@ -37,5 +37,6 @@
 
 <body>
     <h1>You have arrived.</h1>
+    <div id="content"></div>
 </body>
 </html>
