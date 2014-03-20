@@ -1,5 +1,7 @@
 define(['router', 'backbone'], function (Router, Backbone) {
+    'use strict';
     describe('Router', function () {
+        Backbone.history.start({silent: true, pushState: true});
 
         it('should exist', function () {
             expect(Router).toBeDefined();
@@ -10,27 +12,36 @@ define(['router', 'backbone'], function (Router, Backbone) {
         it('should have an app that is a view', function () {
             expect(new Router().app instanceof Backbone.View).toEqual(true);
         });
+        it('should allow an APP to be passed in', function () {
+            var app = {},
+                router = new Router({app: app});
+
+            expect(router.app).toEqual(app);
+        });
         it('should be a valid Backbone router', function () {
             expect(new Router() instanceof Backbone.Router).toEqual(true);
         });
-        it('has a "home" route', function () {
-            expect(new Router().routes['']).toEqual('home');
-        });
 
-        describe('router', function () {
-            beforeEach(function () {
-                try{
-                    Backbone.history.start({silent:true, pushState:true});
-                } catch(e) {
-                    this.router.navigate('elsewhere');
-                }
+        describe('Home Route', function () {
+            it('should exist', function () {
+                expect(new Router().routes['']).toEqual('home'); 
             });
             it('fires the index route with a blank hash', function () {
-                var router = new Router;
-                var route_spy = sinon.spy();
+                var router = new Router(),
+                    route_spy = sinon.spy();
+
                 router.bind('route:home', route_spy);
                 router.navigate('', true);
-                expect(route_spy.called).toEqual(true);;
+                expect(route_spy.called).toEqual(true);
+            });
+            it('tells app, to show the homepage', function () {
+                var app = {showHome: function () {}},
+                    router = new Router({app: app});
+
+                spyOn(router.app, 'showHome');
+
+                router.home();
+                expect(router.app.showHome).toHaveBeenCalled();
             });
         });
     });
