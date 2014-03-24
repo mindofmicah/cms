@@ -1,8 +1,9 @@
-define(['backbone'], function (Backbone) {
+define(['underscore', 'backbone', 'views/layout', 'router'], function (_, Backbone, LayoutView, Router) {
     'use strict';
-    return Backbone.View.extend({
-        showHome: function () {
-            this.$el.html('Hello World');
-        }
-    });
+
+    return {
+        pub_sub : _.extend(Backbone.Events),
+        layout:    new LayoutView(),
+        router:    new Router()
+    };
 });
