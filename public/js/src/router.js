@@ -1,16 +1,20 @@
-define(['backbone', 'app'], function (Backbone, AppView) {
+define(['backbone', 'app'], function (Backbone, App) {
     "use strict";
+
     return Backbone.Router.extend({
         app : null,
-        initialize : function (params) {
-            params = params || {};
-            this.app = params.app || new AppView();
+        initialize : function (opts) {
+            opts = opts || {};
+
+            if (opts.app) {
+                this.app = opts.app;
+            }
         },
         routes: {
             '' : 'home'
         },
         home : function () {
-            this.app.showHome();
+
         }    
     });
 });
