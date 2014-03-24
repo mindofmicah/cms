@@ -1,21 +1,37 @@
-define(['backbone', 'app'], function (Backbone, App) {
+define(['backbone', 'app', 'views/layout', 'router'], function (Backbone, App, LayoutView, AppRouter) {
     'use strict';
-    describe('The main App view', function () {
+    
+    describe('App', function () {
         it('should exist', function () {
-            expect(App).toBeDefined();
-        });
-        it('should be a backbone view', function () {
-            expect(new App() instanceof Backbone.View).toEqual(true);
+            expect(App).toBeDefined(); 
         });
 
-        describe('App.showHome', function () {
+        describe('App.Layout', function () {
             it('should exist', function () {
-                expect(new App().showHome).toBeDefined();
+                expect(App.layout).toBeDefined();
             });
-            it('should set the main content to hello world', function () {
-                var app = new App();
-                app.showHome();
-                expect(app.el.innerHTML).toEqual('Hello World');
+            it('should be a layout view', function () {
+                expect(App.layout instanceof LayoutView).toBe(true);
+            });
+        });
+        describe('App.Router', function () {
+            it('should exist', function () {
+                expect(App.router).toBeDefined();
+            });
+            it('should be a Backbone Router', function () {
+                expect(App.router instanceof AppRouter).toBe(true);
+            });
+        });
+        describe('PubSub', function () {
+            it('should exist', function () {
+                expect(App.pub_sub).toBeDefined();
+            });
+            it('should be an Event system', function () {
+                expect(typeof App.pub_sub === 'object').toEqual(true);
+                expect(App.pub_sub.on).toBeDefined();
+                expect(typeof App.pub_sub.on === 'function').toBe(true);
+                expect(App.pub_sub.trigger).toBeDefined();
+                expect(typeof App.pub_sub.trigger === 'function').toBe(true);
             });
         });
     });
