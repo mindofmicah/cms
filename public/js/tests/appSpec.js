@@ -21,6 +21,9 @@ define(['backbone', 'app', 'views/layout', 'router'], function (Backbone, App, L
             it('should be a Backbone Router', function () {
                 expect(App.router instanceof AppRouter).toBe(true);
             });
+            it('should point back to self', function () {
+                expect(App.router.app).toEqual(App);
+            });
         });
         describe('PubSub', function () {
             it('should exist', function () {
