@@ -1,4 +1,4 @@
-define(['backbone', 'app'], function (Backbone, App) {
+define(['backbone'], function (Backbone) {
     "use strict";
 
     return Backbone.Router.extend({
