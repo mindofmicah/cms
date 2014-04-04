@@ -3,7 +3,7 @@ define(['underscore', 'backbone', 'views/layout', 'router'], function (_, Backbo
 
     var app = {
             pub_sub : _.extend(Backbone.Events),
-            layout:    new LayoutView()
+            layout:    new LayoutView({el:$('.container').eq(0)})
         };
     // Add the router with a pointer back to itself
     app.router = new Router({app: app});
